@@ -4,6 +4,7 @@
     justify-content: center;
     width: 100%;
     font-size: 1rem;
+    color: #6c6c6d;
     >div{
         width: 60%;
         padding: 0.5rem 1rem;
@@ -18,7 +19,7 @@
         }
         >div:hover{
             cursor: pointer;
-            color: #6c6c6d;
+            color: white;
         }
     }
 }
