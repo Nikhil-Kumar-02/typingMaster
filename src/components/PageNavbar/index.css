@@ -1,0 +1,28 @@
+.navbarContainer{
+    padding: 2rem 0;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    font-size: 1rem;
+    >div{
+        width: 60%;
+        padding: 0.5rem 1rem;
+        border-radius: 1rem;
+        background-color: #2C2E31;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        >div{
+            display: flex;
+            align-items: center;
+        }
+        >div:hover{
+            cursor: pointer;
+            color: #6c6c6d;
+        }
+    }
+}
+
+.active{
+    color: yellow;
+}
