@@ -1,10 +1,15 @@
 .bodyWrapper{
+    position: relative;
+}
+
+.bodyContentWrapper{
     display: flex;
     justify-content: center;
     padding: 2rem 0;
     color: grey;
     >div{
         font-size: 1.5rem;
+        line-height: 2.5rem;
         text-justify: newspaper;
         word-spacing: 5px;
         letter-spacing: 2px;
@@ -15,4 +20,16 @@
             position: absolute;
         }
     }
+}
+
+.blurryBackground{
+    cursor: pointer;
+    filter: blur(10px);
+}
+
+.focusMessage{
+    font-size: 1.3rem;
+    position: absolute;
+    top: 50%;
+    left: 40%;
 }
