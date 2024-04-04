@@ -8,9 +8,11 @@ import { HiMiniWrenchScrewdriver } from "react-icons/hi2";
 import { TbMinusVertical } from "react-icons/tb";
 
 const Navbar = ({setTime , time}) => {
+
   function invokeRefrence(e){
-    console.log(e.target);
-    e.target.className = "active";
+    console.log(e.target , e.target.getAttribute('name'));
+    if(e.target.getAttribute('name') !== "verticalLine")
+      e.target.className = "active";
   }
 
   return (
@@ -19,11 +21,11 @@ const Navbar = ({setTime , time}) => {
           <div onClick={invokeRefrence}>@ punctuation</div>
           <div onClick={invokeRefrence}><PiHashStraightBold /> numbers</div>
           <div onClick={invokeRefrence}><MdOutlineAccessTimeFilled/> time</div>
-          <div onClick={invokeRefrence}><TbMinusVertical color="grey"></TbMinusVertical></div>
+          <div onClick={invokeRefrence}><TbMinusVertical name="verticalLine"></TbMinusVertical></div>
           <div onClick={invokeRefrence}><TbLetterA/> words</div>
           <div onClick={invokeRefrence}><FaQuoteLeft/>quote</div>
           <div onClick={invokeRefrence}><HiMiniWrenchScrewdriver/>custom</div>
-          <div onClick={invokeRefrence}><TbMinusVertical color="grey"></TbMinusVertical></div>
+          <div onClick={invokeRefrence}><TbMinusVertical name="verticalLine"></TbMinusVertical></div>
           <div onClick={() => setTime(15)} className={time===15 ? "active" : ""}>15</div>
           <div onClick={() => setTime(30)} className={time===30 ? "active" : ""}>30</div>
           <div onClick={() => setTime(45)} className={time===45 ? "active" : ""}>45</div>

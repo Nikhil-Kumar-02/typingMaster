@@ -14,10 +14,7 @@ function App() {
       <Header></Header>
       <Navbar time={time} setTime={setTime}></Navbar>
 
-      <div onClick={(e)=>{
-        e.stopPropagation()
-        setFocus(true)
-      }}>
+      <div>
         <Body focus={focus} time={time} setFocus={setFocus} setTime={setTime}></Body>
       </div>
       

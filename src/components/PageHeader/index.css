@@ -9,7 +9,7 @@
     >img{
         border-radius: 50%;
     }
-    >:nth-child(3):hover, :nth-child(4):hover , :nth-child(5):hover{
+    >:nth-child(3):hover, :nth-child(4):hover , :nth-child(5):hover , :nth-child(6):hover{
         cursor: pointer;
         color: #717172;
     }

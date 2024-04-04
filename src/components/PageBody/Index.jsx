@@ -41,16 +41,19 @@ const Body = ({focus , time , setFocus , setTime}) => {
     inputRef.current.focus();
   },[]);
 
-
   return (
     <div className="bodyWrapper">
       {
         focus ? <Timer time={time} setFocus={setFocus} inputRef={inputRef}></Timer> : <div className="focusMessage"><PiCursorClickFill/>Click Here To focus Again</div>
       }
-      <div className={focus ? "bodyContentWrapper" : "bodyContentWrapper blurryBackground"} onClick={
-        () => {inputRef.current.focus()}
-      }>
-        <div>
+      <div className={focus ? "bodyContentWrapper" : "bodyContentWrapper blurryBackground"}>
+        <div onClick={
+          (e) => {
+            e.stopPropagation()
+            setFocus(true)
+            inputRef.current.focus()
+          }
+        }>
           <input type="text" onKeyDown={textInputHandler} ref={inputRef}></input>
           <span style={{color : "yellow", textDecoration : "underline"}}>{typedText}</span>
           <span>{leftText}</span>
