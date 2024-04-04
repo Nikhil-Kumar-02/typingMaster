@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import './index.css'
 import { PiHashStraightBold } from "react-icons/pi";
 import { MdOutlineAccessTimeFilled } from "react-icons/md";

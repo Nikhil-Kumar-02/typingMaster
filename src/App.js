@@ -6,7 +6,7 @@ import Footer from './components/PageFooter/Index'
 import { useState } from 'react';
 
 function App() {
-  const [focus , setFocus] = useState(true);
+  const [focus , setFocus] = useState(false);
   const [time , setTime] = useState(15);
   return (
     <div className="App" onClick={()=>setFocus(false)}>
@@ -18,7 +18,7 @@ function App() {
         e.stopPropagation()
         setFocus(true)
       }}>
-        <Body focus={focus} time={time}></Body>
+        <Body focus={focus} time={time} setFocus={setFocus} setTime={setTime}></Body>
       </div>
       
       <Footer></Footer>

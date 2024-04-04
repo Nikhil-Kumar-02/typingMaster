@@ -1,5 +1,12 @@
 .bodyWrapper{
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    >:last-child{
+        cursor: pointer;
+        margin: 2rem 0;
+        width: max-content;
+    }
 }
 
 .bodyContentWrapper{
@@ -7,6 +14,7 @@
     justify-content: center;
     padding: 1rem 0;
     color: grey;
+    position: relative;
     >div{
         font-size: 1.5rem;
         line-height: 2.5rem;
@@ -20,6 +28,7 @@
             position: absolute;
         }
     }
+    
 }
 
 .blurryBackground{
@@ -30,6 +39,6 @@
 .focusMessage{
     font-size: 1.3rem;
     position: absolute;
-    top: 50%;
+    top: 45%;
     left: 40%;
 }

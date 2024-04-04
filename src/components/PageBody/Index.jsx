@@ -2,8 +2,9 @@ import React, { useEffect, useRef, useState } from "react"
 import './index.css'
 import { TbMinusVertical } from "react-icons/tb";
 import Timer from "./Timer";
+import { MdOutlineRefresh } from "react-icons/md";
 
-const Body = ({focus , time}) => {
+const Body = ({focus , time , setFocus , setTime}) => {
 
   const inputRef = useRef();
 
@@ -43,7 +44,7 @@ const Body = ({focus , time}) => {
   return (
     <div className="bodyWrapper">
       {
-        focus ? <Timer time={time}></Timer> : <div className="focusMessage">Click Here To focus Again</div>
+        focus ? <Timer time={time} setFocus={setFocus} inputRef={inputRef}></Timer> : <div className="focusMessage">Click Here To focus Again</div>
       }
       <div className={focus ? "bodyContentWrapper" : "bodyContentWrapper blurryBackground"} onClick={
         () => {inputRef.current.focus()}
@@ -53,6 +54,12 @@ const Body = ({focus , time}) => {
           <span style={{color : "yellow", textDecoration : "underline"}}>{typedText}</span>
           <span>{leftText}</span>
         </div>
+      </div>
+
+      <div onClick={() => {
+        setTime(time)
+      }}>
+        <MdOutlineRefresh size={20}></MdOutlineRefresh>
       </div>
     </div>
   )
