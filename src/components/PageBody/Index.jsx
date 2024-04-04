@@ -13,13 +13,26 @@ const Body = ({focus , time , setFocus , setTime}) => {
 
   const [leftText , setLeftText] = useState(text.substring(0,248))
   const [typedText , setTypedText] = useState('');
+  const [forceUpdate, setForceUpdate] = useState(false);
+
+  function resetTypedParagraph(){
+    setLeftText(text.substring(0,248));
+    setTypedText('');
+    inputRef.current.focus()
+    setForceUpdate(prev => !prev);
+  }
+
+  useEffect(()=>{
+    if(!focus){
+      resetTypedParagraph();
+    }
+  },[focus])
 
   const [index , setIndex] = useState(0);
 
   function textInputHandler(e){
     // console.log(e);
     if(leftText[0] === e.key){
-      console.log("char matched")
       let newTypedText = typedText + leftText[0];
       setTypedText(newTypedText);
 
@@ -33,18 +46,13 @@ const Body = ({focus , time , setFocus , setTime}) => {
     else{
       if(e.keyCode !== 16)
         setIndex(p => p+1);
-      console.log("char did not match");
     }
   }
-
-  useEffect(()=>{
-    inputRef.current.focus();
-  },[]);
 
   return (
     <div className="bodyWrapper">
       {
-        focus ? <Timer time={time} setFocus={setFocus} inputRef={inputRef}></Timer> : <div className="focusMessage"><PiCursorClickFill/>Click Here To focus Again</div>
+        focus ? <Timer forceUpdate={forceUpdate} time={time} setFocus={setFocus} inputRef={inputRef}></Timer> : <div className="focusMessage"><PiCursorClickFill/>Click Here To focus Again</div>
       }
       <div className={focus ? "bodyContentWrapper" : "bodyContentWrapper blurryBackground"}>
         <div onClick={
@@ -60,8 +68,9 @@ const Body = ({focus , time , setFocus , setTime}) => {
         </div>
       </div>
 
-      <div onClick={() => {
-        setTime(time)
+      <div onClick={(e) => {
+        e.stopPropagation()
+        resetTypedParagraph()
       }}>
         <MdOutlineRefresh size={20}></MdOutlineRefresh>
       </div>

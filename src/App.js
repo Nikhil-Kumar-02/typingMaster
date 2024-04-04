@@ -8,8 +8,11 @@ import { useState } from 'react';
 function App() {
   const [focus , setFocus] = useState(false);
   const [time , setTime] = useState(15);
+
   return (
-    <div className="App" onClick={()=>setFocus(false)}>
+    <div className="App" onClick={()=>
+      setFocus(false)
+    }>
 
       <Header></Header>
       <Navbar time={time} setTime={setTime}></Navbar>
