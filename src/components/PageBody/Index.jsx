@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from "react"
 import './index.css'
 import { TbMinusVertical } from "react-icons/tb";
+import Timer from "./Timer";
 
-const Body = ({focus}) => {
+const Body = ({focus , time}) => {
 
   const inputRef = useRef();
 
@@ -42,7 +43,7 @@ const Body = ({focus}) => {
   return (
     <div className="bodyWrapper">
       {
-        !focus && <div className="focusMessage">Click Here To focus Again</div>
+        focus ? <Timer time={time}></Timer> : <div className="focusMessage">Click Here To focus Again</div>
       }
       <div className={focus ? "bodyContentWrapper" : "bodyContentWrapper blurryBackground"} onClick={
         () => {inputRef.current.focus()}

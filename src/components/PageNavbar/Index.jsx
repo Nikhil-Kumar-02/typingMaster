@@ -7,13 +7,11 @@ import { FaQuoteLeft } from "react-icons/fa6";
 import { HiMiniWrenchScrewdriver } from "react-icons/hi2";
 import { TbMinusVertical } from "react-icons/tb";
 
-const Navbar = (props) => {
+const Navbar = ({setTime , time}) => {
   function invokeRefrence(e){
     console.log(e.target);
     e.target.className = "active";
   }
-
-  const [time , setTime] = useState(15);
 
   return (
     <div className="navbarContainer">

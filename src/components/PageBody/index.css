@@ -5,7 +5,7 @@
 .bodyContentWrapper{
     display: flex;
     justify-content: center;
-    padding: 2rem 0;
+    padding: 1rem 0;
     color: grey;
     >div{
         font-size: 1.5rem;

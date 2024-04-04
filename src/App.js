@@ -7,17 +7,18 @@ import { useState } from 'react';
 
 function App() {
   const [focus , setFocus] = useState(true);
+  const [time , setTime] = useState(15);
   return (
     <div className="App" onClick={()=>setFocus(false)}>
 
       <Header></Header>
-      <Navbar></Navbar>
+      <Navbar time={time} setTime={setTime}></Navbar>
 
       <div onClick={(e)=>{
         e.stopPropagation()
         setFocus(true)
       }}>
-        <Body focus={focus}></Body>
+        <Body focus={focus} time={time}></Body>
       </div>
       
       <Footer></Footer>
