@@ -49,11 +49,31 @@
 }
 
 .correct{
-    color: yellow;
+    color: white;
     text-decoration: underline;
 }
 
 .incorrect{
     color: red;
     text-decoration: underline;
+}
+
+.cursorContainer{
+    position: relative;
+    .currentCursor{
+        color: yellow;
+        position: absolute;
+        left: -0.25rem;
+        font-weight: 100;
+        animation: blink-animation 600ms infinite alternate;
+    }
+}
+
+@keyframes blink-animation {
+    from {
+        opacity: 1; /* Visible */
+    }
+    to {
+        opacity: 0; /* Invisible */
+    }
 }

@@ -37,7 +37,7 @@ const Body = ({focus , time , setFocus , setTime}) => {
     element.innerText = letter;
     documentRef.current.appendChild(element);
   }
-
+  
   function textInputHandler(e){
     // console.log(e);
     if(leftText[0] === e.key){
@@ -87,7 +87,7 @@ const Body = ({focus , time , setFocus , setTime}) => {
         }>
           <input type="text" onKeyDown={textInputHandler} ref={inputRef}></input>
           <span ref={documentRef}></span>
-          <span>{leftText}</span>
+          <span className="cursorContainer"><span className="currentCursor">|</span>{leftText}</span>
         </div>
       </div>
 
