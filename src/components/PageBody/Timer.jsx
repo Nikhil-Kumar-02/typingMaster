@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import './Timer.css'
 
-const Timer = ({time , setFocus , inputRef , forceUpdate}) => {
+const Timer = ({time , setFocus , inputRef , forceUpdate , setTestOver}) => {
 
   const [timer , setTimer] = useState(0);
 
@@ -16,6 +16,7 @@ const Timer = ({time , setFocus , inputRef , forceUpdate}) => {
           clearInterval(intervalId);
           inputRef.current.blur();
           setFocus(false)
+          setTestOver(true)
           return 0;
         }
         return p-1

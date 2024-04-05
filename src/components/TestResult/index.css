@@ -1,0 +1,23 @@
+.dashBoardWrapper{
+    margin: 5rem 2rem;
+    display: flex;
+    >:nth-child(1){
+        width: 20%;
+        background-color: red;
+        >h1{
+            color: yellow;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 5rem;
+            font-weight: 80;
+        }
+        >h2{
+            color: grey;
+            font-weight: 700;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+    }
+    >:nth-child(2){
+        width: 80%;
+        background-color: pink;
+    }
+}

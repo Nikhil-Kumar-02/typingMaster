@@ -5,7 +5,7 @@ import Timer from "./Timer";
 import { MdOutlineRefresh } from "react-icons/md";
 import { PiCursorClickFill } from "react-icons/pi";
 
-const Body = ({focus , time , setFocus , setTime}) => {
+const Body = ({focus , time , setFocus , setTestOver}) => {
 
   const inputRef = useRef();
   const documentRef = useRef();
@@ -75,7 +75,7 @@ const Body = ({focus , time , setFocus , setTime}) => {
   return (
     <div className="bodyWrapper">
       {
-        focus ? <Timer forceUpdate={forceUpdate} time={time} setFocus={setFocus} inputRef={inputRef}></Timer> : <div className="focusMessage"><PiCursorClickFill/>Click Here To focus Again</div>
+        focus ? <Timer setTestOver={setTestOver} forceUpdate={forceUpdate} time={time} setFocus={setFocus} inputRef={inputRef}></Timer> : <div className="focusMessage"><PiCursorClickFill/>Click Here To focus Again</div>
       }
       <div className={focus ? "bodyContentWrapper" : "bodyContentWrapper blurryBackground"}>
         <div onClick={
