@@ -8,6 +8,7 @@ import { PiCursorClickFill } from "react-icons/pi";
 const Body = ({focus , time , setFocus , setTime}) => {
 
   const inputRef = useRef();
+  const documentRef = useRef();
 
   let text = "With this tool you can delete all punctuation from the given text Punctuation is a set of conventional signs for easing reading and understanding of the written text The most commonly used group of characters are a comma  semicolon  colon  period  exclamation mark  question mark  dash  and brackets There are also other typographic marks such as an ampersand  asterisk  at sign  percent  and many more The tool finds and removes all such marks However if you want to preserve any of the punctuation marks unchanged you can retain them in the text by specifying them in the option for ignored characters For example if you enter the symbol  in the option the sentence structure will remain unchanged If you input several symbols like  then the text will preserve periods commas and semicolons in their original positions Textabulous";
 
@@ -18,7 +19,7 @@ const Body = ({focus , time , setFocus , setTime}) => {
   function resetTypedParagraph(){
     setLeftText(text.substring(0,248));
     setTypedText('');
-    inputRef.current.focus()
+    inputRef.current.focus();
     setForceUpdate(prev => !prev);
   }
 
@@ -28,24 +29,45 @@ const Body = ({focus , time , setFocus , setTime}) => {
     }
   },[focus])
 
-  const [index , setIndex] = useState(0);
+
+  function attachHTMLtag(letter , className){
+    const element = document.createElement('span');
+    element.className = className;
+    element.innerText = letter;
+    documentRef.current.appendChild(element);
+  }
 
   function textInputHandler(e){
     // console.log(e);
     if(leftText[0] === e.key){
       let newTypedText = typedText + leftText[0];
       setTypedText(newTypedText);
-
+      attachHTMLtag(leftText[0] , 'correct');
       setLeftText(p => p.substring(1))
-
-      setIndex(p => p+1);
     }
     else if(e.key === "Backspace"){
-      setIndex(p => p-1);
+      let lastCharacterIndex = typedText.length-1;
+      let lastCharacter = typedText[lastCharacterIndex];
+
+      const newTypedText = typedText.substring(0,lastCharacterIndex);
+      setTypedText(newTypedText);
+
+      const newLeftText = lastCharacter + leftText;
+      setLeftText(newLeftText);
+
+      const lastChild = documentRef.current.lastChild;
+      if (lastChild) {
+        documentRef.current.removeChild(lastChild);
+      } 
     }
     else{
-      if(e.keyCode !== 16)
-        setIndex(p => p+1);
+      if(e.keyCode !== 16&&e.keyCode !== 17&&e.keyCode !== 18&&e.keyCode !== 19&&e.keyCode !== 20){
+        //when you entered a wrong character
+        let newTypedText = typedText + leftText[0];
+        setTypedText(newTypedText);
+        attachHTMLtag(leftText[0] , 'incorrect');
+        setLeftText(p => p.substring(1))
+      }
     }
   }
 
@@ -63,7 +85,7 @@ const Body = ({focus , time , setFocus , setTime}) => {
           }
         }>
           <input type="text" onKeyDown={textInputHandler} ref={inputRef}></input>
-          <span style={{color : "yellow", textDecoration : "underline"}}>{typedText}</span>
+          <span ref={documentRef}></span>
           <span>{leftText}</span>
         </div>
       </div>
