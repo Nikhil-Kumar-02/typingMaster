@@ -5,7 +5,7 @@ import Timer from "./Timer";
 import { MdOutlineRefresh } from "react-icons/md";
 import { PiCursorClickFill } from "react-icons/pi";
 
-const Body = ({focus , time , setFocus , setTestOver}) => {
+const Body = ({focus , time , setFocus , setTestOver , setTypingStats}) => {
 
   const inputRef = useRef();
   const documentRef = useRef();
@@ -41,6 +41,10 @@ const Body = ({focus , time , setFocus , setTestOver}) => {
   function textInputHandler(e){
     // console.log(e);
     if(leftText[0] === e.key){
+      setTypingStats((p) => {
+        return {...p , wordsTyped : p.wordsTyped+1}
+      })
+
       let newTypedText = typedText + leftText[0];
       setTypedText(newTypedText);
       attachHTMLtag(leftText[0] , 'correct');
@@ -67,7 +71,10 @@ const Body = ({focus , time , setFocus , setTestOver}) => {
         let newTypedText = typedText + leftText[0];
         setTypedText(newTypedText);
         attachHTMLtag(leftText[0] , 'incorrect');
-        setLeftText(p => p.substring(1))
+        setLeftText(p => p.substring(1));
+        setTypingStats((p) => {
+          return {wordsTyped : p.wordsTyped+1, incorrectWords : p.incorrectWords+1}
+        })
       }
     }
   }

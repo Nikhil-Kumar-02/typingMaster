@@ -7,9 +7,10 @@ import TestResultDashBoard from './components/TestResult/Index'
 import { useState } from 'react';
 
 function App() {
-  const [time , setTime] = useState(1);
+  const [time , setTime] = useState(15);
   const [focus , setFocus] = useState(false);
   const [testOver , setTestOver] = useState(false);
+  const [typingStats , setTypingStats] = useState({wordsTyped : 0 , incorrectWords : 0});
 
   return (
     <div className="App" onClick={()=>
@@ -19,12 +20,12 @@ function App() {
       <Header></Header>
       
       {
-        testOver ? <TestResultDashBoard></TestResultDashBoard> : 
+        testOver ? <TestResultDashBoard typingStats={typingStats} time={time}></TestResultDashBoard> : 
         <>
           <Navbar time={time} setTime={setTime}></Navbar>
 
           <div>
-            <Body setTestOver={setTestOver} focus={focus} time={time} setFocus={setFocus}></Body>
+            <Body setTypingStats={setTypingStats} setTestOver={setTestOver} focus={focus} time={time} setFocus={setFocus}></Body>
           </div>
         </>
       }
