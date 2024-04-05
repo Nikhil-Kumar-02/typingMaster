@@ -19,6 +19,7 @@ const Body = ({focus , time , setFocus , setTime}) => {
   function resetTypedParagraph(){
     setLeftText(text.substring(0,248));
     setTypedText('');
+    documentRef.current.innerHTML = '';
     inputRef.current.focus();
     setForceUpdate(prev => !prev);
   }
