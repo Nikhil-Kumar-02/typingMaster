@@ -11,6 +11,7 @@ function App() {
   const [focus , setFocus] = useState(false);
   const [testOver , setTestOver] = useState(false);
   const [typingStats , setTypingStats] = useState({wordsTyped : 0 , incorrectWords : 0});
+  const [charSpeed , setCharSpeed] = useState([]);
 
   return (
     <div className="App" onClick={()=>
@@ -20,12 +21,12 @@ function App() {
       <Header></Header>
       
       {
-        testOver ? <TestResultDashBoard typingStats={typingStats} time={time}></TestResultDashBoard> : 
+        testOver ? <TestResultDashBoard charSpeed={charSpeed} typingStats={typingStats} time={time}></TestResultDashBoard> : 
         <>
           <Navbar time={time} setTime={setTime}></Navbar>
 
           <div>
-            <Body setTypingStats={setTypingStats} setTestOver={setTestOver} focus={focus} time={time} setFocus={setFocus}></Body>
+            <Body setCharSpeed={setCharSpeed} setTypingStats={setTypingStats} setTestOver={setTestOver} focus={focus} time={time} setFocus={setFocus}></Body>
           </div>
         </>
       }

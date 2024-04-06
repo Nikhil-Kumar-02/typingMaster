@@ -5,7 +5,7 @@ import Timer from "./Timer";
 import { MdOutlineRefresh } from "react-icons/md";
 import { PiCursorClickFill } from "react-icons/pi";
 
-const Body = ({focus , time , setFocus , setTestOver , setTypingStats}) => {
+const Body = ({focus , time , setFocus , setTestOver , setTypingStats , setCharSpeed}) => {
 
   const inputRef = useRef();
   const documentRef = useRef();
@@ -28,6 +28,10 @@ const Body = ({focus , time , setFocus , setTestOver , setTypingStats}) => {
     if(!focus){
       resetTypedParagraph();
     }
+    else{
+      //this will only be executed when we foucs on the paragraph
+      setCharSpeed([{start : Date.now() , end : Date.now()}]);
+    }
   },[focus])
 
 
@@ -37,6 +41,18 @@ const Body = ({focus , time , setFocus , setTestOver , setTypingStats}) => {
     element.innerText = letter;
     documentRef.current.appendChild(element);
   }
+
+  function trackTypeSpeed(){
+    let charIndex = typedText.length;
+    setCharSpeed((prev) => {
+      let charSpeedCpy = [...prev];
+      charSpeedCpy[charIndex].end = Date.now();
+      if(charIndex+1 === charSpeedCpy.length){
+        charSpeedCpy.push({start : Date.now() , end : Date.now()});
+      }
+      return charSpeedCpy;
+    })
+  }
   
   function textInputHandler(e){
     // console.log(e);
@@ -45,6 +61,8 @@ const Body = ({focus , time , setFocus , setTestOver , setTypingStats}) => {
         return {...p , wordsTyped : p.wordsTyped+1}
       })
 
+      trackTypeSpeed();
+      
       let newTypedText = typedText + leftText[0];
       setTypedText(newTypedText);
       attachHTMLtag(leftText[0] , 'correct');
@@ -68,6 +86,9 @@ const Body = ({focus , time , setFocus , setTestOver , setTypingStats}) => {
     else{
       if(e.keyCode !== 16&&e.keyCode !== 17&&e.keyCode !== 18&&e.keyCode !== 19&&e.keyCode !== 20){
         //when you entered a wrong character
+
+        trackTypeSpeed();
+        
         let newTypedText = typedText + leftText[0];
         setTypedText(newTypedText);
         attachHTMLtag(leftText[0] , 'incorrect');

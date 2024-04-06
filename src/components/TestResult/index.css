@@ -19,6 +19,24 @@
         }
     }
     >:nth-child(2){
+        margin: 0 0.5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        color: grey;
+    }
+    >:nth-child(3){
         width: 80%;
+        display: flex;
+        height: 18rem;
+        flex-direction: row-reverse;
+        transform: rotate(-180deg);
+        >div{
+            width: 0.7rem;
+            background-color: yellow;
+            max-height: 17rem;
+            /* border-bottom-right-radius: 1rem; */
+            border-bottom-left-radius: 1rem;
+        }
     }
 }
