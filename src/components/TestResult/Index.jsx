@@ -12,7 +12,13 @@ const TestResultDashBoard = ({typingStats , time , charSpeed}) => {
         {/* <h1>{parseInt((typingStats.wordsTyped-typingStats.incorrectWords)/time)*60/5}</h1> */}
         <h1>{parseInt(((typingStats.wordsTyped-typingStats.incorrectWords)*60)/(5*time))}</h1>
         <h2>acc</h2>
-        <h1>{parseInt((typingStats.wordsTyped-typingStats.incorrectWords)*100/typingStats.wordsTyped)}%</h1>
+        <h1>
+        {
+          typingStats.wordsTyped === 0 ? 0 : (
+            parseInt((typingStats.wordsTyped-typingStats.incorrectWords)*100/typingStats.wordsTyped)
+          )
+        }
+        %</h1>
       </div>
 
       <div>
@@ -32,7 +38,15 @@ const TestResultDashBoard = ({typingStats , time , charSpeed}) => {
       <div>
       {
         charSpeed.map((speed) => (
-          <div style={{height : `${60 / (((speed.end - speed.start)/1000)*5)}px` , width : `${w}rem`}}></div>
+          <div
+            style={{
+              height:
+                speed.end - speed.start === 0
+                  ? "1px"
+                  : `${60 / (((speed.end - speed.start) / 1000) * 5)}px`,
+              width: `${w}rem`,
+            }}
+          ></div>
         ))
       }
       </div>

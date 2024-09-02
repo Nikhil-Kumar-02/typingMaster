@@ -36,7 +36,7 @@
             background-color: yellow;
             max-height: 17rem;
             /* border-bottom-right-radius: 1rem; */
-            border-bottom-left-radius: 1rem;
+            /* border-bottom-left-radius: 1rem; */
         }
     }
 }
