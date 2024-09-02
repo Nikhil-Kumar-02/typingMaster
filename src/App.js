@@ -18,7 +18,7 @@ function App() {
       setFocus(false)
     }>
 
-      <Header></Header>
+      <Header setTestOver={setTestOver}></Header>
       
       {
         testOver ? <TestResultDashBoard charSpeed={charSpeed} typingStats={typingStats} time={time}></TestResultDashBoard> : 
