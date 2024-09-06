@@ -56,6 +56,9 @@ const Body = ({focus , time , setFocus , setTestOver , setTypingStats , setCharS
   
   function textInputHandler(e){
     // console.log(e);
+    if(!focus)
+      return;
+
     if(leftText[0] === e.key){
       setTypingStats((p) => {
         return {...p , wordsTyped : p.wordsTyped+1}
