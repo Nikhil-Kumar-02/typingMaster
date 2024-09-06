@@ -108,7 +108,11 @@ const Body = ({focus , time , setFocus , setTestOver , setTypingStats , setCharS
   return (
     <div className="bodyWrapper">
       {
-        focus ? <Timer setTestOver={setTestOver} forceUpdate={forceUpdate} time={time} setFocus={setFocus} inputRef={inputRef}></Timer> : <div className="focusMessage"><PiCursorClickFill/>Click Here To focus Again</div>
+        !focus && <div className="focusMessage"><PiCursorClickFill/>Click Here To focus Again</div>
+      }
+      {
+        focus && typedText.length>0 && 
+        <Timer setTestOver={setTestOver} forceUpdate={forceUpdate} time={time} setFocus={setFocus} inputRef={inputRef}></Timer>
       }
       <div className={focus ? "bodyContentWrapper" : "bodyContentWrapper blurryBackground"}>
         <div onClick={
