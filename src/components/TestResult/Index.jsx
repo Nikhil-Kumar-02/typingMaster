@@ -3,21 +3,24 @@ import './index.css'
 
 const TestResultDashBoard = ({typingStats , time , charSpeed}) => {
   console.log(typingStats.wordsTyped-typingStats.incorrectWords);
+
   const w = 60/charSpeed.length;
+
+  const accuracy = typingStats.wordsTyped === 0 ? 0 : (
+    parseInt((typingStats.wordsTyped-typingStats.incorrectWords)*100/typingStats.wordsTyped)
+  );
+
+  const typingSpeed = parseInt(((typingStats.wordsTyped-typingStats.incorrectWords)*60)/(5*time));
 
   return (
     <div className="dashBoardWrapper">
       <div>
         <h2>WPM</h2>
         {/* <h1>{parseInt((typingStats.wordsTyped-typingStats.incorrectWords)/time)*60/5}</h1> */}
-        <h1>{parseInt(((typingStats.wordsTyped-typingStats.incorrectWords)*60)/(5*time))}</h1>
+        <h1>{Math.floor(typingSpeed*(accuracy/100))}</h1>
         <h2>acc</h2>
         <h1>
-        {
-          typingStats.wordsTyped === 0 ? 0 : (
-            parseInt((typingStats.wordsTyped-typingStats.incorrectWords)*100/typingStats.wordsTyped)
-          )
-        }
+        {accuracy}
         %</h1>
       </div>
 
