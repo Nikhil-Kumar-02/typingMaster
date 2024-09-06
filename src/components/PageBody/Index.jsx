@@ -69,19 +69,21 @@ const Body = ({focus , time , setFocus , setTestOver , setTypingStats , setCharS
       setLeftText(p => p.substring(1))
     }
     else if(e.key === "Backspace"){
-      let lastCharacterIndex = typedText.length-1;
-      let lastCharacter = typedText[lastCharacterIndex];
+      if(typedText.length-1 >= 0){
+        let lastCharacterIndex = typedText.length-1;
+        let lastCharacter = typedText[lastCharacterIndex];
 
-      const newTypedText = typedText.substring(0,lastCharacterIndex);
-      setTypedText(newTypedText);
+        const newTypedText = typedText.substring(0,lastCharacterIndex);
+        setTypedText(newTypedText);
 
-      const newLeftText = lastCharacter + leftText;
-      setLeftText(newLeftText);
+        const newLeftText = lastCharacter + leftText;
+        setLeftText(newLeftText);
 
-      const lastChild = documentRef.current.lastChild;
-      if (lastChild) {
-        documentRef.current.removeChild(lastChild);
-      } 
+        const lastChild = documentRef.current.lastChild;
+        if (lastChild) {
+          documentRef.current.removeChild(lastChild);
+        } 
+      }
     }
     else{
       if(e.keyCode !== 16&&e.keyCode !== 17&&e.keyCode !== 18&&e.keyCode !== 19&&e.keyCode !== 20){
